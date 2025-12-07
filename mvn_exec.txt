@@ -1,0 +1,51 @@
+WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
+WARNING: sun.misc.Unsafe::staticFieldBase has been called by com.google.inject.internal.aop.HiddenClassDefiner (file:/C:/Program%20Files/apache-maven-3.9.11/lib/guice-5.1.0-classes.jar)
+WARNING: Please consider reporting this to the maintainers of class com.google.inject.internal.aop.HiddenClassDefiner
+WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+[INFO] Error stacktraces are turned on.
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------------< fr.example:petitbac >-------------------------
+[INFO] Building petitbac 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[WARNING] The POM for net.sf.jade:jade:jar:4.6.0 is invalid, transitive dependencies (if any) will not be available: 1 problem was encountered while building the effective model
+[FATAL] Non-parseable POM C:\Users\HP\.m2\repository\net\sf\jade\jade\4.6.0\jade-4.6.0.pom: attribute value must start with quotation or apostrophe not \ (position: START_DOCUMENT seen <project xmlns=\... @1:17)  @ line 1, column 17
+
+[INFO] 
+[INFO] --- exec:3.0.0:java (default-cli) @ petitbac ---
+dÚc. 07, 2025 12:44:07 AM jade.Boot parseCmdLineArgs
+AVERTISSEMENT: WARNING: ignoring command line argument Joueur2:PetitBac.AgentJoueur occurring after agents specification
+dÚc. 07, 2025 12:44:07 AM jade.Boot parseCmdLineArgs
+AVERTISSEMENT: Note that agent specifications must be separated by a semicolon character ";" without spaces
+dÚc. 07, 2025 12:44:07 AM jade.core.Runtime beginContainer
+INFOS: ----------------------------------
+    This is JADE 4.6.0 - revision 6869 of 30-11-2022 14:47:03
+    downloaded in Open Source, under LGPL restrictions,
+    at http://jade.tilab.com/
+----------------------------------------
+dÚc. 07, 2025 12:44:07 AM jade.imtp.leap.LEAPIMTPManager initialize
+INFOS: Listening for intra-platform commands on address:
+- jicp://192.168.1.5:1099
+
+dÚc. 07, 2025 12:44:08 AM jade.core.BaseService init
+INFOS: Service jade.core.management.AgentManagement initialized
+dÚc. 07, 2025 12:44:08 AM jade.core.BaseService init
+INFOS: Service jade.core.messaging.Messaging initialized
+dÚc. 07, 2025 12:44:08 AM jade.core.BaseService init
+INFOS: Service jade.core.resource.ResourceManagement initialized
+dÚc. 07, 2025 12:44:08 AM jade.core.BaseService init
+INFOS: Service jade.core.mobility.AgentMobility initialized
+dÚc. 07, 2025 12:44:08 AM jade.core.BaseService init
+INFOS: Service jade.core.event.Notification initialized
+dÚc. 07, 2025 12:44:08 AM jade.mtp.http.HTTPServer <init>
+INFOS: HTTP-MTP Using XML parser com.sun.org.apache.xerces.internal.jaxp.SAXParserImpl$JAXPSAXParser
+dÚc. 07, 2025 12:44:08 AM jade.core.messaging.MessagingService boot
+INFOS: MTP addresses:
+http://HatimPC:7778/acc
+dÚc. 07, 2025 12:44:08 AM jade.core.AgentContainerImpl startBootstrapAgents
+GRAVE: Cannot create agent Joueur1: Class PetitBac.AgentJoueur for agent ( agent-identifier :name Joueur1@192.168.1.5:1099/JADE ) not found - Caused by:  PetitBac.AgentJoueur
+dÚc. 07, 2025 12:44:08 AM jade.core.AgentContainerImpl joinPlatform
+INFOS: --------------------------------------
+Agent container Main-Container@192.168.1.5 is ready.
+--------------------------------------------

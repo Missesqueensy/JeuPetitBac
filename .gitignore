@@ -1,0 +1,33 @@
+# Maven
+/target/
+
+# Build folders
+/bin/
+/out/
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Node
+/node_modules/
+
+# Logs and OS files
+*.log
+.DS_Store
+
+# Libraries and distributions
+/lib/
+
+# Generated CSV and runtime outputs
+petitbac_benchmark.csv
+
+# Python
+__pycache__/

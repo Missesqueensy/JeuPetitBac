@@ -1,0 +1,1058 @@
+{
+	"Animal" : {
+		"A" : [
+			"Anaconda",
+			"Ant",
+			"Armadillo"
+		],
+		"B" : [
+			"Baboon",
+			"Badger",
+			"Beaver"
+		],
+		"C" : [
+			"Cheetah",
+			"Chicken",
+			"Chimpanzee"
+		],
+		"D" : [
+			"Dolphin",
+			"Donkey",
+			"Dragonfly"
+		],
+		"E" : [
+			"Echidna",
+			"Eel",
+			"Elk"
+		],
+		"F" : [
+			"Ferret",
+			"Flamingo",
+			"Fly"
+		],
+		"G" : [
+			"Gecko",
+			"Gorilla",
+			"Goldfish"
+		],
+		"H" : [
+			"Hamster",
+			"Hedgehog",
+			"Heron"
+		],
+		"I" : [
+			"Insect",
+			"Ibis",
+			"Inchworm"
+		],
+		"J" : [
+			"Jay",
+			"Jerboa",
+			"Junco"
+		],
+		"K" : [
+			"Kingfisher",
+			"Kestrel",
+			"Komodo dragon"
+		],
+		"L" : [
+			"Leopard",
+			"Llama",
+			"Lobster"
+		],
+		"M" : [
+			"Mouse",
+			"Meerkat",
+			"Mantis"
+		],
+		"N" : [
+			"Nighthawk",
+			"Numbat",
+			"Nutria"
+		],
+		"O" : [
+			"Owl",
+			"Octopus",
+			"Orangutan"
+		],
+		"P" : [
+			"Peacock",
+			"Puma",
+			"Porcupine"
+		],
+		"Q" : [
+			"Quokka",
+			"Queen bee",
+			"Quelea"
+		],
+		"R" : [
+			"Raven",
+			"Reindeer",
+			"Rhino"
+		],
+		"S" : [
+			"Seal",
+			"Shark",
+			"Squirrel"
+		],
+		"T" : [
+			"Toad",
+			"Tarantula",
+			"Trout"
+		],
+		"U" : [
+			"Urchin",
+			"Uromastyx",
+			"Urubu"
+		],
+		"V" : [
+			"Vole",
+			"Vampire bat",
+			"Vervet"
+		],
+		"W" : [
+			"Weasel",
+			"Woodpecker",
+			"Wombat"
+		],
+		"X" : [
+			"X-ray fish",
+			"Xenops",
+			"Xeme"
+		],
+		"Y" : [
+			"Yellowhammer",
+			"Yeti crab",
+			"Yaffle"
+		],
+		"Z" : [
+			"Zander",
+			"Zapata wren",
+			"Zorro"
+		]
+	},
+	"Country" : {
+		"A" : [
+			"Algeria",
+			"Albania",
+			"Angola"
+		],
+		"B" : [
+			"Bahamas",
+			"Bangladesh",
+			"Bolivia"
+		],
+		"C" : [
+			"Cambodia",
+			"Colombia",
+			"Croatia"
+		],
+		"D" : [
+			"Dominican Republic",
+			"Dubai (Emirate)",
+			"Denmark"
+		],
+		"E" : [
+			"El Salvador",
+			"England",
+			"Ethiopia"
+		],
+		"F" : [
+			"Faroe Islands",
+			"French Guiana",
+			"Fiji"
+		],
+		"G" : [
+			"Gambia",
+			"Georgia",
+			"Guatemala"
+		],
+		"H" : [
+			"Hong Kong",
+			"Hungary",
+			"Honduras"
+		],
+		"I" : [
+			"Indonesia",
+			"Iran",
+			"Iraq"
+		],
+		"J" : [
+			"Japan",
+			"Jersey",
+			"Jordan"
+		],
+		"K" : [
+			"Kiribati",
+			"Kosovo",
+			"Kyrgyzstan"
+		],
+		"L" : [
+			"Lebanon",
+			"Liberia",
+			"Libya"
+		],
+		"M" : [
+			"Madagascar",
+			"Malta",
+			"Mongolia"
+		],
+		"N" : [
+			"Netherlands",
+			"New Zealand",
+			"Nicaragua"
+		],
+		"O" : [
+			"Oman",
+			"Ouzbékistan",
+			"Oxfordshire (fictif)"
+		],
+		"P" : [
+			"Pakistan",
+			"Panama",
+			"Paraguay"
+		],
+		"Q" : [
+			"Qatar",
+			"Queensland (Australie)",
+			"Qeshm (Iran)"
+		],
+		"R" : [
+			"Republic of Congo",
+			"Republic of Korea",
+			"Rwanda"
+		],
+		"S" : [
+			"Scotland",
+			"Singapore",
+			"Slovakia"
+		],
+		"T" : [
+			"Taiwan",
+			"Tanzania",
+			"Togo"
+		],
+		"U" : [
+			"United States",
+			"United Kingdom",
+			"Uruguay"
+		],
+		"V" : [
+			"Vanuatu",
+			"Venezuela",
+			"Vietnam"
+		],
+		"W" : [
+			"Western Samoa",
+			"Wales",
+			"Wallis"
+		],
+		"X" : [
+			"Xinjiang (Chine)",
+			"Xizang (Tibet)",
+			"Xochimilco (Mexique)"
+		],
+		"Y" : [
+			"Yemen",
+			"Yucatan (Mexique)",
+			"Yukon (Canada)"
+		],
+		"Z" : [
+			"Zanzibar",
+			"Zimbabwe",
+			"Zambia"
+		]
+	},
+	"City" : {
+		"A" : [
+			"Algiers",
+			"Ankara",
+			"Atlanta"
+		],
+		"B" : [
+			"Barcelona",
+			"Beijing",
+			"Boston"
+		],
+		"C" : [
+			"Casablanca",
+			"Calgary",
+			"Cologne"
+		],
+		"D" : [
+			"Damascus",
+			"Denver",
+			"Detroit"
+		],
+		"E" : [
+			"Edmonton",
+			"Eindhoven",
+			"Eugene"
+		],
+		"F" : [
+			"Fez",
+			"Freetown",
+			"Fresno"
+		],
+		"G" : [
+			"Giza",
+			"Gdansk",
+			"Genoa"
+		],
+		"H" : [
+			"Havana",
+			"Hong Kong",
+			"Houston"
+		],
+		"I" : [
+			"Indianapolis",
+			"Islamabad",
+			"Irkutsk"
+		],
+		"J" : [
+			"Jeddah",
+			"Jaipur",
+			"Jacksonville"
+		],
+		"K" : [
+			"Krakow",
+			"Kuala Lumpur",
+			"Kingston"
+		],
+		"L" : [
+			"Lima",
+			"Lyon",
+			"Lagos"
+		],
+		"M" : [
+			"Manchester",
+			"Melbourne",
+			"Munich"
+		],
+		"N" : [
+			"Nantes",
+			"Nagoya",
+			"Nice"
+		],
+		"O" : [
+			"Osaka",
+			"Omaha",
+			"Oxford"
+		],
+		"P" : [
+			"Philadelphia",
+			"Phoenix",
+			"Porto"
+		],
+		"Q" : [
+			"Queenstown",
+			"Querétaro",
+			"Quilmes"
+		],
+		"R" : [
+			"Rabat",
+			"Reykjavik",
+			"Rennes"
+		],
+		"S" : [
+			"Shanghai",
+			"Singapore",
+			"Seville"
+		],
+		"T" : [
+			"Tehran",
+			"Toulouse",
+			"Tunis"
+		],
+		"U" : [
+			"Ulsan",
+			"Umea",
+			"Urumqi"
+		],
+		"V" : [
+			"Vienna",
+			"Valparaiso",
+			"Vilnius"
+		],
+		"W" : [
+			"Winnipeg",
+			"Wuhan",
+			"Wroclaw"
+		],
+		"X" : [
+			"Xalapa",
+			"Xining",
+			"Xuchang"
+		],
+		"Y" : [
+			"Yerevan",
+			"Yekaterinburg",
+			"Yinchuan"
+		],
+		"Z" : [
+			"Zaragoza",
+			"Zhengzhou",
+			"Zhuhai"
+		]
+	},
+	"GirlName" : {
+		"A" : [
+			"Anna",
+			"Ashley",
+			"Abigail"
+		],
+		"B" : [
+			"Beth",
+			"Bailey",
+			"Beatrice"
+		],
+		"C" : [
+			"Camila",
+			"Caroline",
+			"Cecilia"
+		],
+		"D" : [
+			"Deborah",
+			"Denise",
+			"Daphne"
+		],
+		"E" : [
+			"Emily",
+			"Eleanor",
+			"Erica"
+		],
+		"F" : [
+			"Faith",
+			"Felicity",
+			"Frances"
+		],
+		"G" : [
+			"Gemma",
+			"Gina",
+			"Gwen"
+		],
+		"H" : [
+			"Harper",
+			"Holly",
+			"Hope"
+		],
+		"I" : [
+			"Ivy",
+			"Isla",
+			"Irene"
+		],
+		"J" : [
+			"Jessica",
+			"Jennifer",
+			"Joan"
+		],
+		"K" : [
+			"Kayla",
+			"Kelly",
+			"Kylie"
+		],
+		"L" : [
+			"Laura",
+			"Leah",
+			"Lydia"
+		],
+		"M" : [
+			"Marie",
+			"Michelle",
+			"Melody"
+		],
+		"N" : [
+			"Nina",
+			"Nancy",
+			"Natasha"
+		],
+		"O" : [
+			"Octavia",
+			"Opal",
+			"Orla"
+		],
+		"P" : [
+			"Patricia",
+			"Pearl",
+			"Phoebe"
+		],
+		"Q" : [
+			"Quinta",
+			"Quiana",
+			"Querida"
+		],
+		"R" : [
+			"Rachel",
+			"Rebecca",
+			"Ruth"
+		],
+		"S" : [
+			"Sarah",
+			"Samantha",
+			"Sierra"
+		],
+		"T" : [
+			"Tiffany",
+			"Trinity",
+			"Tabitha"
+		],
+		"U" : [
+			"Unity",
+			"Ulla",
+			"Ulrica"
+		],
+		"V" : [
+			"Veronica",
+			"Vanessa",
+			"Vera"
+		],
+		"W" : [
+			"Wendy",
+			"Whitney",
+			"Wanda"
+		],
+		"X" : [
+			"Xiomara",
+			"Ximena",
+			"Xandra"
+		],
+		"Y" : [
+			"Yolanda",
+			"Yvonne",
+			"Yuki"
+		],
+		"Z" : [
+			"Zola",
+			"Zinnia",
+			"Zena"
+		]
+	},
+	"BoyName" : {
+		"A" : [
+			"Andrew",
+			"Anthony",
+			"Austin"
+		],
+		"B" : [
+			"Blake",
+			"Bradley",
+			"Bryan"
+		],
+		"C" : [
+			"Carl",
+			"Cameron",
+			"Colton"
+		],
+		"D" : [
+			"Derek",
+			"Dominic",
+			"Dean"
+		],
+		"E" : [
+			"Edward",
+			"Eric",
+			"Elliott"
+		],
+		"F" : [
+			"Freddie",
+			"Francisco",
+			"Flynn"
+		],
+		"G" : [
+			"Gavin",
+			"Gregory",
+			"Griffin"
+		],
+		"H" : [
+			"Hector",
+			"Hunter",
+			"Hudson"
+		],
+		"I" : [
+			"Ivan",
+			"Isaiah",
+			"Ignatius"
+		],
+		"J" : [
+			"Jason",
+			"Justin",
+			"Jordan"
+		],
+		"K" : [
+			"Kenneth",
+			"Keith",
+			"Kieran"
+		],
+		"L" : [
+			"Logan",
+			"Louis",
+			"Lance"
+		],
+		"M" : [
+			"Marcus",
+			"Michael",
+			"Miles"
+		],
+		"N" : [
+			"Neil",
+			"Nolan",
+			"Nico"
+		],
+		"O" : [
+			"Orion",
+			"Otis",
+			"Omar"
+		],
+		"P" : [
+			"Philip",
+			"Preston",
+			"Pierce"
+		],
+		"Q" : [
+			"Quinn",
+			"Quinton",
+			"Quest"
+		],
+		"R" : [
+			"Raymond",
+			"Richard",
+			"Ryder"
+		],
+		"S" : [
+			"Steven",
+			"Scott",
+			"Seth"
+		],
+		"T" : [
+			"Timothy",
+			"Tristan",
+			"Troy"
+		],
+		"U" : [
+			"Ulric",
+			"Urban",
+			"Usher"
+		],
+		"V" : [
+			"Vaughn",
+			"Vladimir",
+			"Vernon"
+		],
+		"W" : [
+			"Walter",
+			"Warren",
+			"Wade"
+		],
+		"X" : [
+			"Xavi",
+			"Xenon",
+			"Xerxes"
+		],
+		"Y" : [
+			"Yahya",
+			"York",
+			"Yale"
+		],
+		"Z" : [
+			"Zayn",
+			"Zeke",
+			"Zion"
+		]
+	},
+	"Fruit" : {
+		"A" : [
+			"Açaí",
+			"Atemoya",
+			"Asian pear"
+		],
+		"B" : [
+			"Boysenberry",
+			"Blood orange",
+			"Breadfruit"
+		],
+		"C" : [
+			"Cantaloupe",
+			"Clementine",
+			"Currant"
+		],
+		"D" : [
+			"Damson",
+			"Dewberry",
+			"Dragonfruit"
+		],
+		"E" : [
+			"Entawak",
+			"Etrog",
+			"Evergreen huckleberry"
+		],
+		"F" : [
+			"Finger lime",
+			"Fuyu persimmon",
+			"Forest strawberry"
+		],
+		"G" : [
+			"Gooseberry",
+			"Greengage",
+			"Golden kiwi"
+		],
+		"H" : [
+			"Huckleberry",
+			"Hala fruit",
+			"Hardy kiwi"
+		],
+		"I" : [
+			"Ilama",
+			"Indian prune",
+			"Ichang papeda"
+		],
+		"J" : [
+			"Jabuticaba",
+			"Japanese plum",
+			"Jocote"
+		],
+		"K" : [
+			"Kabosu",
+			"Kepel fruit",
+			"Kaffir lime"
+		],
+		"L" : [
+			"Longan",
+			"Loganberry",
+			"Langsat"
+		],
+		"M" : [
+			"Mulberry",
+			"Miracle fruit",
+			"Medlar"
+		],
+		"N" : [
+			"Naranjilla",
+			"Nance",
+			"Noble berry"
+		],
+		"O" : [
+			"Orangelo",
+			"Ogeechee lime",
+			"Ortanique"
+		],
+		"P" : [
+			"Papaya",
+			"Persimmon",
+			"Passion fruit"
+		],
+		"Q" : [
+			"Quinault strawberry",
+			"Queensland nut",
+			"Quandong"
+		],
+		"R" : [
+			"Rose apple",
+			"Rangpur",
+			"Red banana"
+		],
+		"S" : [
+			"Soursop",
+			"Salak",
+			"Starfruit"
+		],
+		"T" : [
+			"Tayberry",
+			"Tangelo",
+			"Tree tomato"
+		],
+		"U" : [
+			"Uva",
+			"Umkokola",
+			"Uvilla"
+		],
+		"V" : [
+			"Valencia orange",
+			"Victorian plum",
+			"Vine peach"
+		],
+		"W" : [
+			"Wampee",
+			"White sapote",
+			"Williams pear"
+		],
+		"X" : [
+			"Xigua",
+			"Xylocarp",
+			"Xocotl"
+		],
+		"Y" : [
+			"Yellow dragon fruit",
+			"Yali pear",
+			"Yunnan hackberry"
+		],
+		"Z" : [
+			"Zwetschge",
+			"Zill mango",
+			"Zestar apple"
+		]
+	},
+	"Color" : {
+		"A" : [
+			"Amethyst",
+			"Apricot",
+			"Ash grey"
+		],
+		"B" : [
+			"Burgundy",
+			"Beige",
+			"Bronze"
+		],
+		"C" : [
+			"Cobalt",
+			"Charcoal",
+			"Cerise"
+		],
+		"D" : [
+			"Dark blue",
+			"Daffodil",
+			"Dusty rose"
+		],
+		"E" : [
+			"Electric blue",
+			"Eggplant",
+			"Eggshell"
+		],
+		"F" : [
+			"Flamingo",
+			"Flax",
+			"French rose"
+		],
+		"G" : [
+			"Garnet",
+			"Gunmetal",
+			"Goldenrod"
+		],
+		"H" : [
+			"Honey",
+			"Harlequin",
+			"Harvard crimson"
+		],
+		"I" : [
+			"Imperial red",
+			"Iris",
+			"Iron"
+		],
+		"J" : [
+			"Jasper",
+			"Jonquil",
+			"June bud"
+		],
+		"K" : [
+			"Keppel",
+			"Keylime",
+			"Kobicha"
+		],
+		"L" : [
+			"Lilac",
+			"Lincoln green",
+			"Linen"
+		],
+		"M" : [
+			"Mint",
+			"Mahogany",
+			"Mustard"
+		],
+		"N" : [
+			"Navy blue",
+			"Neon blue",
+			"Naples yellow"
+		],
+		"O" : [
+			"Onyx",
+			"Opal",
+			"Orchid"
+		],
+		"P" : [
+			"Peach",
+			"Periwinkle",
+			"Pearl"
+		],
+		"Q" : [
+			"Quebracho",
+			"Quincy",
+			"Quetzal green"
+		],
+		"R" : [
+			"Rust",
+			"Raspberry",
+			"Royal blue"
+		],
+		"S" : [
+			"Scarlet",
+			"Sand",
+			"Seafoam"
+		],
+		"T" : [
+			"Tan",
+			"Titanium",
+			"Topaz"
+		],
+		"U" : [
+			"Ultramarine blue",
+			"Ube purple",
+			"Urobilin"
+		],
+		"V" : [
+			"Vanilla",
+			"Verdigris",
+			"Venetian red"
+		],
+		"W" : [
+			"Wisteria",
+			"Walnut",
+			"Watermelon"
+		],
+		"X" : [
+			"Xanthous",
+			"Xiketic",
+			"X11 gray"
+		],
+		"Y" : [
+			"Yellow-green",
+			"Yolk yellow",
+			"Yale blue"
+		],
+		"Z" : [
+			"Zinc",
+			"Zinnwaldite",
+			"Zomp blue"
+		]
+	},
+	"Object" : {
+		"A" : [
+			"Apple",
+			"Axe",
+			"Atlas"
+		],
+		"B" : [
+			"Backpack",
+			"Bottle",
+			"Blanket"
+		],
+		"C" : [
+			"Candle",
+			"Computer",
+			"Carpet"
+		],
+		"D" : [
+			"Drill",
+			"Drum",
+			"Diary"
+		],
+		"E" : [
+			"Earring",
+			"Easel",
+			"Extension cord"
+		],
+		"F" : [
+			"Flashlight",
+			"Flute",
+			"Feather"
+		],
+		"G" : [
+			"Gloves",
+			"Grill",
+			"Gauze"
+		],
+		"H" : [
+			"Harmonica",
+			"Hook",
+			"Hose"
+		],
+		"I" : [
+			"Ice pack",
+			"Incense",
+			"Ink"
+		],
+		"J" : [
+			"Jug",
+			"Jigsaw",
+			"Journal"
+		],
+		"K" : [
+			"Keyboard",
+			"Kite",
+			"Knapsack"
+		],
+		"L" : [
+			"Lighter",
+			"Locket",
+			"Lantern"
+		],
+		"M" : [
+			"Mattress",
+			"Microwave",
+			"Magnet"
+		],
+		"N" : [
+			"Needle",
+			"Net",
+			"Necklace"
+		],
+		"O" : [
+			"Oar",
+			"Ornament",
+			"Opener"
+		],
+		"P" : [
+			"Paintbrush",
+			"Pot",
+			"Puppet"
+		],
+		"Q" : [
+			"Quiver",
+			"Quartz crystal",
+			"Queen (chess piece)"
+		],
+		"R" : [
+			"Rake",
+			"Rope",
+			"Remote"
+		],
+		"S" : [
+			"Spoon",
+			"Stapler",
+			"Shield"
+		],
+		"T" : [
+			"Torch",
+			"Tire",
+			"Thread"
+		],
+		"U" : [
+			"Utensil",
+			"Urn",
+			"Ukulele"
+		],
+		"V" : [
+			"Valve",
+			"Violin",
+			"Visor"
+		],
+		"W" : [
+			"Wrench",
+			"Whisk",
+			"Window"
+		],
+		"X" : [
+			"Xbox",
+			"X-acto knife",
+			"X-ray film"
+		],
+		"Y" : [
+			"Yardstick",
+			"Yield sign",
+			"Yo-yo"
+		],
+		"Z" : [
+			"Zoom lens",
+			"Zinc bucket",
+			"Zapper"
+		]
+	}
+}

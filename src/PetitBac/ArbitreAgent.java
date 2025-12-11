@@ -674,13 +674,13 @@ public class ArbitreAgent extends Agent {
         @Override
         public void action() {
             if (currentRound < totalRounds) {
+                currentRound++;
                 char letter = AVAILABLE_LETTERS.get(random.nextInt(AVAILABLE_LETTERS.size()));
-                System.out.println("\n📨 Manche " + (currentRound+1) + " - Lettre : " + letter);
+                System.out.println("\n📨 Manche " + currentRound + " - Lettre : " + letter);
 
                 sendLetterToPlayers(letter);
-                waitForStopAndResponses(letter, currentRound + 1); // Passer le numéro de manche
+                waitForStopAndResponses(letter, currentRound);
 
-                currentRound++;
             } else {
                 displayFinalResults();
                 gameFinished = true;
@@ -779,7 +779,7 @@ public class ArbitreAgent extends Agent {
                 }
             }
 
-            // Calculer les scores avec le bon numéro de manche
+            // Calculer les scores
             calculateScores(allResponses, letter, firstToStop, roundNumber);
         }
 
@@ -787,35 +787,42 @@ public class ArbitreAgent extends Agent {
             Map<String,Integer> roundScores = new HashMap<>();
             for (String p : PLAYERS) roundScores.put(p, 0);
 
-            // --- 1. Titre de la Manche ---
+            // ================= DÉBUT AFFICHAGE POUR GUI =================
             System.out.println("\n" + "=".repeat(80));
             System.out.printf(" ⚔️ MANCHE %d - LETTRE : %c %s \n", roundNumber, letter, (firstToStop != null ? "(STOP: " + firstToStop + ")" : ""));
             System.out.println("=".repeat(80));
             
-            // --- 2. En-tête du Tableau (Thèmes et Réponses) ---
+            // === AFFICHAGE POUR LA GRILLE GUI (FORMAT SIMPLE) ===
+            System.out.println("\n=== AFFICHAGE POUR LA GRILLE GUI ===");
+            
+            int totalBaseScoreG1 = 0;
+            int totalBaseScoreG2 = 0;
+            
+            // En-tête simple pour le parsing
+            System.out.println("THÈME | MOT_GAMER1 | POINTS_GAMER1 | MOT_GAMER2 | POINTS_GAMER2");
+            
+            // === AFFICHAGE DÉTAILLÉ POUR CONSOLE ===
             System.out.println("┌" + "─".repeat(12) + "┬" + "─".repeat(30) + "┬" + "─".repeat(30) + "┐");
             System.out.printf("│ %-10s │ %-15s | %-7s │ %-15s | %-7s │\n", 
                               "THÈME", PLAYERS[0] + " (Rép.)", "(Pts)", PLAYERS[1] + " (Rép.)", "(Pts)");
             System.out.println("├" + "─".repeat(12) + "┼" + "─".repeat(30) + "┼" + "─".repeat(30) + "┤");
-            
-            int totalBaseScoreG1 = 0;
-            int totalBaseScoreG2 = 0;
 
-            // --- 3. Parcours des Thèmes et Calcul des Scores ---
+            // Parcours des thèmes
             for (String theme : THEMES) {
                 String w1 = allResponses.getOrDefault(PLAYERS[0], new HashMap<>()).getOrDefault(theme, "");
                 String w2 = allResponses.getOrDefault(PLAYERS[1], new HashMap<>()).getOrDefault(theme, "");
                 w1 = w1.isEmpty() ? "---" : w1;
                 w2 = w2.isEmpty() ? "---" : w2;
 
+                // Calcul des points
                 int s1 = 0, s2 = 0;
                 boolean v1 = isValid(w1, letter);
                 boolean v2 = isValid(w2, letter);
 
                 if (v1 && v2) {
-                    s1 = s2 = (w1.equalsIgnoreCase(w2) ? 1 : 2); // 1 pt si identique, 2 pts sinon
+                    s1 = s2 = (w1.equalsIgnoreCase(w2) ? 1 : 2);
                 } else if (v1) {
-                    s1 = 2; // 2 pts si valide et l'autre non
+                    s1 = 2;
                 } else if (v2) {
                     s2 = 2;
                 }
@@ -826,24 +833,21 @@ public class ArbitreAgent extends Agent {
                 roundScores.put(PLAYERS[0], roundScores.get(PLAYERS[0]) + s1);
                 roundScores.put(PLAYERS[1], roundScores.get(PLAYERS[1]) + s2);
 
-                // Ligne de données formatée
+                // Ligne formatée pour console
                 System.out.printf("│ %-10s │ %-15s | %-7d │ %-15s | %-7d │\n", 
                                   theme, w1, s1, w2, s2);
+                
+                // Ligne SIMPLE pour le parsing du GUI (TRÈS IMPORTANT)
+                System.out.println(theme + " | " + w1 + " | " + s1 + " | " + w2 + " | " + s2);
             }
             
-            // --- 4. Pied de Tableau (Scores de Base) ---
             System.out.println("└" + "─".repeat(12) + "┴" + "─".repeat(30) + "┴" + "─".repeat(30) + "┘");
-            System.out.printf("  SCORE DE BASE (Thèmes) : Gamer1 = %d pts | Gamer2 = %d pts%n", totalBaseScoreG1, totalBaseScoreG2);
-
-
-            // --- 5. Détails du Score Final de la Manche ---
+            
+            // Gestion du bonus STOP
             int stopBonusG1 = 0;
             int stopBonusG2 = 0;
             
             if (firstToStop != null) {
-                System.out.println("  " + "─".repeat(78));
-                System.out.printf(" ⭐ BONUS STOP (+20 pts) : Attribué à %s%n", firstToStop);
-                
                 if (firstToStop.equals(PLAYERS[0])) {
                     roundScores.put(PLAYERS[0], roundScores.get(PLAYERS[0]) + 20);
                     stopBonusG1 = 20;
@@ -851,13 +855,37 @@ public class ArbitreAgent extends Agent {
                     roundScores.put(PLAYERS[1], roundScores.get(PLAYERS[1]) + 20);
                     stopBonusG2 = 20;
                 }
+            }
+            
+            // Mettre à jour les scores globaux
+            int totalMancheG1 = totalBaseScoreG1 + stopBonusG1;
+            int totalMancheG2 = totalBaseScoreG2 + stopBonusG2;
+            
+            globalScores.put(PLAYERS[0], globalScores.get(PLAYERS[0]) + totalMancheG1);
+            globalScores.put(PLAYERS[1], globalScores.get(PLAYERS[1]) + totalMancheG2);
+            
+            // Afficher les scores totaux pour le GUI
+            System.out.println("Gamer1 : " + globalScores.get(PLAYERS[0]) + " points");
+            System.out.println("Gamer2 : " + globalScores.get(PLAYERS[1]) + " points");
+            System.out.println("=== FIN AFFICHAGE GRILLE ===\n");
+            // ================= FIN AFFICHAGE POUR GUI =================
+
+            // Affichage détaillé pour la console
+            System.out.println("════════════════════════════════════════════════════════════");
+            System.out.println("                  RÉSULTATS DÉTAILLÉS                      ");
+            System.out.println("════════════════════════════════════════════════════════════");
+            
+            System.out.printf("  SCORE DE BASE (Thèmes) : %s = %d pts | %s = %d pts%n", 
+                              PLAYERS[0], totalBaseScoreG1, PLAYERS[1], totalBaseScoreG2);
+
+            if (firstToStop != null) {
+                System.out.println("  " + "─".repeat(78));
+                System.out.printf(" ⭐ BONUS STOP (+20 pts) : Attribué à %s%n", firstToStop);
             } else {
                 System.out.println("  " + "─".repeat(78));
                 System.out.println(" ⭐ BONUS STOP (+20 pts) : Non attribué.");
             }
 
-            // --- 6. Tableau de Récapitulatif Global ---
-            
             System.out.println("  " + "─".repeat(78));
             System.out.println("  📈 RÉCAPITULATIF DES SCORES :");
             System.out.println("  " + "─".repeat(78));
@@ -867,20 +895,14 @@ public class ArbitreAgent extends Agent {
             System.out.printf("  | %-7s | %-12s | %-12s | %-12s | %-12s |\n", 
                               "---", "---", "---", "---", "---");
 
-            // Ligne Gamer1
-            int totalMancheG1 = totalBaseScoreG1 + stopBonusG1;
-            globalScores.put(PLAYERS[0], globalScores.get(PLAYERS[0]) + totalMancheG1);
             System.out.printf("  | %-7s | %-12d | %-12d | %-10d | %-10d |\n", 
-                              PLAYERS[0], totalBaseScoreG1, stopBonusG1, totalMancheG1, globalScores.get(PLAYERS[0])
-            );
+                              PLAYERS[0], totalBaseScoreG1, stopBonusG1, totalMancheG1, globalScores.get(PLAYERS[0]));
             
-            // Ligne Gamer2
-            int totalMancheG2 = totalBaseScoreG2 + stopBonusG2;
-            globalScores.put(PLAYERS[1], globalScores.get(PLAYERS[1]) + totalMancheG2);
             System.out.printf("  | %-7s | %-12d | %-12d | %-10d | %-10d |\n", 
-                              PLAYERS[1], totalBaseScoreG2, stopBonusG2, totalMancheG2, globalScores.get(PLAYERS[1])
-            );
+                              PLAYERS[1], totalBaseScoreG2, stopBonusG2, totalMancheG2, globalScores.get(PLAYERS[1]));
+            
             System.out.println("  " + "─".repeat(78));
+            System.out.println();
         }
         
         private boolean isValid(String word, char letter) {
@@ -910,9 +932,15 @@ public class ArbitreAgent extends Agent {
             System.out.println("═══════════════════════════════════════════════");
             if (winner != null) {
                 System.out.println("  🎉 GAGNANT : " + winner + " avec " + maxScore + " points ! 🎉");
+                System.out.println("GAGNANT : " + winner);
             }
             System.out.println("═══════════════════════════════════════════════");
+            
+            // Afficher aussi pour le GUI à la fin
+            System.out.println("\n=== FIN DU JEU - SCORES FINAUX ===");
+            System.out.println("Gamer1 : " + globalScores.get(PLAYERS[0]) + " points");
+            System.out.println("Gamer2 : " + globalScores.get(PLAYERS[1]) + " points");
+            System.out.println("FIN DU JEU");
         }
     }
 }
-

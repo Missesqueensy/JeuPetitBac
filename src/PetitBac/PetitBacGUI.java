@@ -1,4 +1,3 @@
-
 package PetitBac;
 
 import javafx.application.Application;
@@ -27,6 +26,7 @@ import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.*;
 
 public class PetitBacGUI extends Application {
 
@@ -50,6 +50,11 @@ public class PetitBacGUI extends Application {
     private int gamer1TotalScore = 0;
     private int gamer2TotalScore = 0;
     
+    // Historique des manches (Solution 1)
+    private List<Map<String, String>> round1Results = new ArrayList<>();
+    private List<Map<String, String>> round2Results = new ArrayList<>();
+    private List<Map<String, String>> round3Results = new ArrayList<>();
+    
     private AgentContainer container;
     private boolean gameRunning = false;
     private Timeline progressTimeline;
@@ -70,7 +75,7 @@ public class PetitBacGUI extends Application {
         VBox bottom = createConsole();
         root.setBottom(bottom);
 
-        VBox rightPanel = createControlPanel();
+        VBox rightPanel = createControlPanel(); // Contient le bouton historique (Solution 2)
         root.setRight(rightPanel);
 
         Scene scene = new Scene(root);
@@ -112,45 +117,8 @@ public class PetitBacGUI extends Application {
         return header;
     }
 
-    /*private VBox createGameBoard() {
-        VBox board = new VBox(15);
-        board.setPadding(new Insets(15));
-        board.setAlignment(Pos.TOP_CENTER);
-
-        HBox infoBox = new HBox(20);
-        infoBox.setAlignment(Pos.CENTER);
-
-        VBox roundBox = createInfoCard("MANCHE", "0/3");
-        roundLabel = (Label) ((VBox) roundBox.getChildren().get(0)).getChildren().get(1);
-        
-        VBox letterBox = createInfoCard("LETTRE", "?");
-        letterLabel = (Label) ((VBox) letterBox.getChildren().get(0)).getChildren().get(1);
-
-        infoBox.getChildren().addAll(roundBox, letterBox);
-
-        progressBar = new ProgressBar(0);
-        progressBar.setPrefWidth(400);
-        progressBar.setPrefHeight(20);
-        progressBar.setStyle("-fx-accent: #00d4ff;");
-
-        // Nouvelle grille de jeu
-        gameGrid = createGameGrid();
-
-        HBox playersBox = new HBox(40);
-        playersBox.setAlignment(Pos.CENTER);
-        playersBox.setPadding(new Insets(10));
-
-        player1Box = createPlayerCard("Gamer1", "BFS", Color.web("#06ffa5"));
-        player2Box = createPlayerCard("Gamer2", "A*", Color.web("#ff006e"));
-
-        playersBox.getChildren().addAll(player1Box, player2Box);
-
-        board.getChildren().addAll(infoBox, progressBar, gameGrid, playersBox);
-        return board;
-    }*/
-    
     private HBox createGameBoard() {
-        HBox mainBoard = new HBox(20); // Changé de VBox à HBox
+        HBox mainBoard = new HBox(20);
         mainBoard.setPadding(new Insets(15));
         mainBoard.setAlignment(Pos.CENTER);
         
@@ -186,9 +154,8 @@ public class PetitBacGUI extends Application {
         // Ajouter tout dans l'HBox principale
         mainBoard.getChildren().addAll(player1Box, centerContent, player2Box);
         
-        return mainBoard; // Retourne HBox au lieu de VBox
+        return mainBoard;
     }
-
 
     private GridPane createGameGrid() {
         GridPane grid = new GridPane();
@@ -397,77 +364,36 @@ public class PetitBacGUI extends Application {
         return card;
     }
 
-    /*private VBox createPlayerCard(String name, String algo, Color accentColor) {
-        VBox card = new VBox(8);
-        card.setAlignment(Pos.CENTER);
-        card.setPadding(new Insets(8));
-        card.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4); " +
-                     "-fx-background-radius: 20; " +
-                     "-fx-border-color: " + toRgbString(accentColor) + "; " +
-                     "-fx-border-radius: 20; " +
-                     "-fx-border-width: 3;");
-        card.setPrefWidth(100);
-        card.setPrefHeight(80);
-
-        Label nameLabel = new Label("👤 " + name);
-        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        nameLabel.setTextFill(accentColor);
-
-        Label algoLabel = new Label("Algorithme: " + algo);
-        algoLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
-        algoLabel.setTextFill(Color.web("#a8dadc"));
-
-        Label scoreTitle = new Label("SCORE TOTAL");
-        scoreTitle.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-        scoreTitle.setTextFill(Color.web("#a8dadc"));
-
-        Label scoreValue = new Label("0");
-        scoreValue.setFont(Font.font("Arial", FontWeight.BOLD, 20));
-        scoreValue.setTextFill(Color.WHITE);
-        
-        if (name.equals("Gamer1")) {
-            score1Label = scoreValue;
-        } else {
-            score2Label = scoreValue;
-        }
-
-        Label statusIcon = new Label("⏸");
-        statusIcon.setFont(Font.font("Arial", 24));
-
-        card.getChildren().addAll(nameLabel, algoLabel, scoreTitle, scoreValue, statusIcon);
-        return card;
-    }*/
     private VBox createPlayerCard(String name, String algo, Color accentColor) {
-        VBox card = new VBox(10); // Espacement augmenté
+        VBox card = new VBox(10);
         card.setAlignment(Pos.CENTER);
-        card.setPadding(new Insets(15)); // Padding augmenté
+        card.setPadding(new Insets(15));
         card.setStyle("-fx-background-color: rgba(0, 0, 0, 0.4); " +
                      "-fx-background-radius: 20; " +
                      "-fx-border-color: " + toRgbString(accentColor) + "; " +
                      "-fx-border-radius: 20; " +
                      "-fx-border-width: 3;");
-        card.setPrefWidth(150); // Largeur augmentée
-        card.setPrefHeight(180); // Hauteur augmentée
+        card.setPrefWidth(200);
+        card.setPrefHeight(180);
 
         Label nameLabel = new Label("👤 " + name);
-        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18)); // Police plus grande
+        nameLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
         nameLabel.setTextFill(accentColor);
 
         Label algoLabel = new Label("Algorithme: " + algo);
-        algoLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 14)); // Police plus grande
+        algoLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
         algoLabel.setTextFill(Color.web("#a8dadc"));
 
-        // Ajouter une ligne de séparation
         Separator separator = new Separator();
         separator.setPrefWidth(120);
         separator.setStyle("-fx-background-color: " + toRgbString(accentColor.brighter()) + ";");
 
         Label scoreTitle = new Label("SCORE TOTAL");
-        scoreTitle.setFont(Font.font("Arial", FontWeight.BOLD, 14)); // Police plus grande
+        scoreTitle.setFont(Font.font("Arial", FontWeight.BOLD, 14));
         scoreTitle.setTextFill(Color.web("#a8dadc"));
 
         Label scoreValue = new Label("0");
-        scoreValue.setFont(Font.font("Arial", FontWeight.BOLD, 28)); // Police plus grande
+        scoreValue.setFont(Font.font("Arial", FontWeight.BOLD, 28));
         scoreValue.setTextFill(Color.WHITE);
         
         if (name.equals("Gamer1")) {
@@ -476,7 +402,6 @@ public class PetitBacGUI extends Application {
             score2Label = scoreValue;
         }
 
-        // Ajouter une icône de statut
         Label statusIcon = new Label("⏸");
         statusIcon.setFont(Font.font("Arial", 24));
         statusIcon.setTextFill(accentColor);
@@ -496,17 +421,16 @@ public class PetitBacGUI extends Application {
 
         consoleArea = new TextArea();
         consoleArea.setEditable(false);
-        consoleArea.setPrefHeight(80);
+        consoleArea.setPrefHeight(40);  // ⭐ RÉDUIT : 80 → 40 pixels
         consoleArea.setStyle("-fx-control-inner-background: #1a1a1a; " +
                             "-fx-text-fill: #00ff00; " +
                             "-fx-font-family: 'Consolas', 'Monaco', monospace; " +
-                            "-fx-font-size: 11px;");
+                            "-fx-font-size: 9px;");  // ⭐ RÉDUIT : 11px → 9px
         consoleArea.setWrapText(true);
 
         consoleBox.getChildren().addAll(consoleTitle, consoleArea);
         return consoleBox;
     }
-
     private VBox createControlPanel() {
         VBox panel = new VBox(15);
         panel.setPadding(new Insets(15));
@@ -528,6 +452,10 @@ public class PetitBacGUI extends Application {
         Button resetButton = createStyledButton("🔄 RÉINITIALISER", "#ffd60a");
         resetButton.setOnAction(e -> resetGame());
 
+        // SOLUTION 2 : Bouton historique
+        Button historyButton = createStyledButton("📊 HISTORIQUE", "#00d4ff");
+        historyButton.setOnAction(e -> showHistoryDialog());
+
         Separator separator = new Separator();
         separator.setPrefWidth(180);
 
@@ -548,6 +476,7 @@ public class PetitBacGUI extends Application {
 
         panel.getChildren().addAll(
             controlTitle, startButton, stopButton, resetButton,
+            historyButton, // SOLUTION 2 : Bouton ajouté ici
             separator, infoTitle, info1, info2, info3
         );
 
@@ -579,6 +508,140 @@ public class PetitBacGUI extends Application {
         return button;
     }
 
+    // SOLUTION 1 : Méthode pour afficher l'historique
+    private void showHistoryDialog() {
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle("📊 Historique des Manches");
+        dialog.setHeaderText("Résultats détaillés des 3 manches");
+        
+        GridPane grid = new GridPane();
+        grid.setHgap(15);
+        grid.setVgap(8);
+        grid.setPadding(new Insets(20));
+        grid.setStyle("-fx-background-color: rgba(26, 26, 46, 0.9);");
+        
+        // En-têtes
+        String[] headers = {"Manche", "Thème", "Gamer1 Mot", "Gamer1 Pts", "Gamer2 Mot", "Gamer2 Pts"};
+        for (int i = 0; i < headers.length; i++) {
+            Label header = new Label(headers[i]);
+            header.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+            header.setTextFill(Color.web("#00d4ff"));
+            header.setPadding(new Insets(5, 10, 5, 10));
+            header.setStyle("-fx-background-color: rgba(0, 0, 0, 0.5); " +
+                           "-fx-background-radius: 5;");
+            grid.add(header, i, 0);
+        }
+        
+        int row = 1;
+        
+        // Afficher les 3 manches
+        displayRoundResults(grid, 1, round1Results, row);
+        row += Math.max(round1Results.size(), 1);
+        
+        // Ligne de séparation entre les manches
+        Separator sep1 = new Separator();
+        sep1.setPrefWidth(800);
+        sep1.setStyle("-fx-background-color: rgba(255, 255, 255, 0.3);");
+        grid.add(sep1, 0, row, 6, 1);
+        row++;
+        
+        displayRoundResults(grid, 2, round2Results, row);
+        row += Math.max(round2Results.size(), 1);
+        
+        // Ligne de séparation
+        Separator sep2 = new Separator();
+        sep2.setPrefWidth(800);
+        sep2.setStyle("-fx-background-color: rgba(255, 255, 255, 0.3);");
+        grid.add(sep2, 0, row, 6, 1);
+        row++;
+        
+        displayRoundResults(grid, 3, round3Results, row);
+        
+        ScrollPane scrollPane = new ScrollPane(grid);
+        scrollPane.setPrefSize(850, 450);
+        scrollPane.setStyle("-fx-background: transparent; -fx-background-color: transparent;");
+        
+        dialog.getDialogPane().setContent(scrollPane);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().setStyle("-fx-background-color: linear-gradient(to bottom right, #1a1a2e, #16213e);");
+        
+        // Afficher un message si l'historique est vide
+        if (round1Results.isEmpty() && round2Results.isEmpty() && round3Results.isEmpty()) {
+            Label emptyLabel = new Label("Aucun historique disponible. Démarrez une partie !");
+            emptyLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+            emptyLabel.setTextFill(Color.web("#ffd60a"));
+            grid.add(emptyLabel, 0, 1, 6, 1);
+        }
+        
+        dialog.showAndWait();
+    }
+    
+    // SOLUTION 1 : Afficher les résultats d'une manche
+    private void displayRoundResults(GridPane grid, int roundNum, 
+                                    List<Map<String, String>> results, int startRow) {
+        if (results.isEmpty()) {
+            Label noDataLabel = new Label("Manche " + roundNum + " : Aucune donnée");
+            noDataLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
+            noDataLabel.setTextFill(Color.web("#a8dadc"));
+            grid.add(noDataLabel, 0, startRow, 6, 1);
+            return;
+        }
+        
+        for (int i = 0; i < results.size(); i++) {
+            Map<String, String> result = results.get(i);
+            int row = startRow + i;
+            
+            // Numéro de manche (fusionné pour le même thème sur plusieurs lignes)
+            if (i == 0) {
+                Label roundLabel = new Label("Manche " + roundNum);
+                roundLabel.setFont(Font.font("Arial", FontWeight.BOLD, 13));
+                roundLabel.setTextFill(Color.web("#ffd60a"));
+                roundLabel.setPadding(new Insets(5));
+                grid.add(roundLabel, 0, row, 1, results.size());
+                GridPane.setValignment(roundLabel, javafx.geometry.VPos.TOP);
+            }
+            
+            // Thème
+            Label themeLabel = new Label(result.get("theme"));
+            themeLabel.setFont(Font.font("Arial", 12));
+            themeLabel.setTextFill(Color.WHITE);
+            themeLabel.setPadding(new Insets(5));
+            grid.add(themeLabel, 1, row);
+            
+            // Gamer1 Mot
+            Label g1Word = new Label(result.get("gamer1Word"));
+            g1Word.setFont(Font.font("Arial", 12));
+            g1Word.setTextFill(Color.web("#06ffa5"));
+            g1Word.setPadding(new Insets(5));
+            grid.add(g1Word, 2, row);
+            
+            // Gamer1 Points
+            Label g1Pts = new Label(result.get("gamer1Score"));
+            g1Pts.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            g1Pts.setTextFill(Color.web("#06ffa5"));
+            g1Pts.setPadding(new Insets(5));
+            g1Pts.setStyle("-fx-background-color: rgba(6, 255, 165, 0.1); " +
+                          "-fx-background-radius: 3;");
+            grid.add(g1Pts, 3, row);
+            
+            // Gamer2 Mot
+            Label g2Word = new Label(result.get("gamer2Word"));
+            g2Word.setFont(Font.font("Arial", 12));
+            g2Word.setTextFill(Color.web("#ff006e"));
+            g2Word.setPadding(new Insets(5));
+            grid.add(g2Word, 4, row);
+            
+            // Gamer2 Points
+            Label g2Pts = new Label(result.get("gamer2Score"));
+            g2Pts.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+            g2Pts.setTextFill(Color.web("#ff006e"));
+            g2Pts.setPadding(new Insets(5));
+            g2Pts.setStyle("-fx-background-color: rgba(255, 0, 110, 0.1); " +
+                          "-fx-background-radius: 3;");
+            grid.add(g2Pts, 5, row);
+        }
+    }
+
     private void startGame() {
         if (gameRunning) return;
 
@@ -588,6 +651,11 @@ public class PetitBacGUI extends Application {
         clearGameGrid();
         gamer1TotalScore = 0;
         gamer2TotalScore = 0;
+        
+        // Vider l'historique au démarrage d'une nouvelle partie
+        round1Results.clear();
+        round2Results.clear();
+        round3Results.clear();
 
         updateStatus("🎮 Jeu en cours...", "#06ffa5");
         consoleArea.appendText("\n========================================\n");
@@ -647,11 +715,11 @@ public class PetitBacGUI extends Application {
                 Thread.sleep(300);
 
                 AgentController joueur2 = container.createNewAgent(
-                    "Gamer2",
-                    "PetitBac.Joueur2",
-                    new Object[]{"ASTAR"}
-                );
-                joueur2.start();
+                	    "Gamer2",
+                	    "PetitBac.Joueur",  // ⭐ UTILISEZ Joueur au lieu de Joueur2
+                	    new Object[]{"ASTAR"}
+                	);
+                	joueur2.start();
 
                 Platform.runLater(() -> {
                     consoleArea.appendText("[✓] Gamer2 démarré\n\n");
@@ -709,6 +777,12 @@ public class PetitBacGUI extends Application {
         gamer2TotalScore = 0;
         progressBar.setProgress(0);
         clearGameGrid();
+        
+        // Vider l'historique lors de la réinitialisation
+        round1Results.clear();
+        round2Results.clear();
+        round3Results.clear();
+        
         updateStatus("⏸ En attente de démarrage", "#ffd60a");
     }
 
@@ -806,8 +880,55 @@ public class PetitBacGUI extends Application {
             }
         }
 
+        // ⭐ NOUVEAU : Mettre à jour l'algorithme affiché dans les cartes joueurs
+        if (text.contains("Algorithme:") && (text.contains("Gamer1") || text.contains("Gamer2"))) {
+            try {
+                // Parser "Gamer1 - Algorithme: BFS, Temps: 234 ms"
+                Pattern algoPattern = Pattern.compile("(Gamer\\d+)\\s*-\\s*Algorithme:\\s*(\\w+)");
+                Matcher algoMatcher = algoPattern.matcher(text);
+                
+                while (algoMatcher.find()) {
+                    final String playerName = algoMatcher.group(1);
+                    final String algo = algoMatcher.group(2);
+                    
+                    Platform.runLater(() -> {
+                        try {
+                            // Mettre à jour le label de l'algorithme (2ème enfant de la carte)
+                            if (playerName.equals("Gamer1") && player1Box != null) {
+                                Label algoLabel = (Label) player1Box.getChildren().get(1);
+                                algoLabel.setText("Algorithme: " + algo);
+                                
+                                // Animation de changement
+                                algoLabel.setTextFill(Color.YELLOW);
+                                Timeline timeline = new Timeline(
+                                    new KeyFrame(Duration.millis(500), 
+                                        new KeyValue(algoLabel.textFillProperty(), Color.web("#a8dadc")))
+                                );
+                                timeline.play();
+                                
+                            } else if (playerName.equals("Gamer2") && player2Box != null) {
+                                Label algoLabel = (Label) player2Box.getChildren().get(1);
+                                algoLabel.setText("Algorithme: " + algo);
+                                
+                                // Animation de changement
+                                algoLabel.setTextFill(Color.YELLOW);
+                                Timeline timeline = new Timeline(
+                                    new KeyFrame(Duration.millis(500), 
+                                        new KeyValue(algoLabel.textFillProperty(), Color.web("#a8dadc")))
+                                );
+                                timeline.play();
+                            }
+                        } catch (Exception e) {
+                            System.err.println("Erreur mise à jour algo: " + e.getMessage());
+                        }
+                    });
+                }
+            } catch (Exception e) {
+                // Ignorer les erreurs de parsing
+            }
+        }
+
         // Parser les réponses des joueurs et les scores par thème
-        // Format attendu: "Country | France | 10 | Italy | 5"
         if (text.contains("|") && (text.contains("Country") || text.contains("City") || 
             text.contains("GirlName") || text.contains("BoyName") || 
             text.contains("Fruit") || text.contains("Color") || text.contains("Object"))) {
@@ -838,6 +959,29 @@ public class PetitBacGUI extends Application {
                         try {
                             int gamer1Score = Integer.parseInt(gamer1ScoreStr);
                             int gamer2Score = Integer.parseInt(gamer2ScoreStr);
+                            
+                            // Stocker les résultats selon la manche actuelle
+                            Map<String, String> result = new HashMap<>();
+                            result.put("theme", theme);
+                            result.put("gamer1Word", gamer1Word);
+                            result.put("gamer1Score", gamer1ScoreStr);
+                            result.put("gamer2Word", gamer2Word);
+                            result.put("gamer2Score", gamer2ScoreStr);
+                            
+                            String roundText = roundLabel.getText();
+                            int currentRound = Integer.parseInt(roundText.split("/")[0]);
+                            
+                            switch(currentRound) {
+                                case 1:
+                                    round1Results.add(result);
+                                    break;
+                                case 2:
+                                    round2Results.add(result);
+                                    break;
+                                case 3:
+                                    round3Results.add(result);
+                                    break;
+                            }
                             
                             // Mettre à jour la grille
                             updateGameGrid("Gamer1", theme, gamer1Word, gamer1Score);
@@ -948,6 +1092,18 @@ public class PetitBacGUI extends Application {
                 stopButton.setDisable(true);
                 startButton.setDisable(false);
                 gameRunning = false;
+                
+                // Afficher automatiquement l'historique à la fin du jeu
+                if (!round1Results.isEmpty() || !round2Results.isEmpty() || !round3Results.isEmpty()) {
+                    Platform.runLater(() -> {
+                        try {
+                            Thread.sleep(1000); // Petite pause avant d'afficher
+                            showHistoryDialog();
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                }
             });
         }
     }

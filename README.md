@@ -1,9 +1,9 @@
-# 🎲 Jeu Petit Bac — Multi-Agent System with JADE
+ 🎲 Jeu Petit Bac — Multi-Agent System with JADE
 
 A distributed multi-agent implementation of the classic "Petit Bac" (Scattergories) word game, built with the JADE (Java Agent Development Framework). Each player is represented by an autonomous agent that manages game logic, turn coordination, and real-time score validation independently.
 
 
- ##📌 Overview
+ 📌 Overview
 
 | Property | Details |
 | Language | Java |
@@ -14,7 +14,7 @@ A distributed multi-agent implementation of the classic "Petit Bac" (Scattergori
 | Course | Fondements AI — Master AI & Digital Computing |
 
 
- ##🧠 Architecture
+ 🧠 Architecture
 
 ┌────────────────────────────────────────────┐
 │              JADE Main Container           │
